@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sugestões de Presentes</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+
+width:100%;
+height:100%;
+overflow:hidden;
+background:#f8f2e8;
+
+}
+
+#pagina{
+
+position:relative;
+width:100vw;
+height:100vh;
+
+}
+
+#pagina img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+#continuar{
+
+position:absolute;
+
+bottom:35px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:260px;
+height:60px;
+
+background:transparent;
+
+border:none;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="pagina">
+
+<img src="assets/presentes.webp">
+
+<button id="continuar"></button>
+
+</div>
+
+<script>
+
+document
+.getElementById("continuar")
+.onclick=function(){
+
+window.location.href="brasao.html";
+
+}
+
+</script>
+
+</body>
+</html>
