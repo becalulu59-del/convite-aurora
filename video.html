@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vídeo</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+
+width:100%;
+height:100%;
+background:#000;
+overflow:hidden;
+
+}
+
+video{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<video
+id="video"
+autoplay
+muted
+playsinline>
+
+<source src="assets/video.mp4" type="video/mp4">
+
+</video>
+
+<script>
+
+const video=document.getElementById("video");
+
+video.onended=function(){
+
+window.location.href="informacoes.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
