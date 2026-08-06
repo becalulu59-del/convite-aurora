@@ -1,1 +1,152 @@
+:root {
+  --paper: #f8f2e8;
+  --ink: #9a6f47;
+  --panel-width: min(100vw, 56.25vh);
+  --panel-height: min(177.7778vw, 100vh);
+}
 
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#f8f2e8;
+  overscroll-behavior:none;
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#app{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#f8f2e8;
+}
+
+.screen{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.screen-media{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.full-tap{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+}
+
+#invite-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:black;
+}
+
+.video-start{
+  position:absolute;
+  inset:0;
+  border:none;
+  background:transparent;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  padding-bottom:40px;
+}
+
+.video-start span{
+  background:rgba(255,255,255,.9);
+  padding:12px 22px;
+  border-radius:30px;
+  color:#9a6f47;
+  font-size:18px;
+}
+
+.video-start.hidden{
+  display:none;
+}
+
+.hotspot{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:78%;
+  height:8%;
+  background:transparent;
+  border:none;
+}
+
+.hotspot-map{
+  top:61%;
+}
+
+.hotspot-whatsapp{
+  top:71%;
+}
+
+.hotspot-gifts{
+  top:81%;
+}
+
+.edge-next{
+  position:absolute;
+  right:0;
+  top:0;
+  width:18%;
+  height:100%;
+  background:transparent;
+  border:none;
+}
+
+.gifts-overlay{
+  position:absolute;
+  inset:0;
+  display:none;
+  background:#f8f2e8;
+}
+
+.gifts-overlay.open{
+  display:block;
+}
+
+.close-gifts{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  border:none;
+  border-radius:30px;
+  padding:12px 25px;
+  background:rgba(255,255,255,.95);
+  color:#9a6f47;
+  font-size:18px;
+}
