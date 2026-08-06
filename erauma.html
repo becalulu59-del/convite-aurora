@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Era uma vez...</title>
 
 <style>
@@ -11,38 +15,61 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
 html,body{
+
 width:100%;
 height:100%;
-overflow:hidden;
 background:#f8f2e8;
-font-family:Georgia,serif;
+overflow:hidden;
+
 }
 
 body{
+
 display:flex;
 justify-content:center;
 align-items:center;
-text-align:center;
-padding:40px;
+
+}
+
+.pagina{
+
+position:relative;
+
+width:min(100vw,56.25vh);
+height:min(177.777vw,100vh);
+
+overflow:hidden;
+
+}
+
+img{
+
+width:100%;
+height:100%;
+display:block;
+object-fit:contain;
+
+}
+
+#continuar{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:transparent;
+
+border:none;
+
 cursor:pointer;
-}
-
-h1{
-
-font-size:46px;
-color:#b88655;
-font-style:italic;
-
-}
-
-p{
-
-margin-top:20px;
-font-size:20px;
-color:#8a6d4f;
 
 }
 
@@ -52,17 +79,23 @@ color:#8a6d4f;
 
 <body>
 
-<div>
+<div class="pagina">
 
-<h1>Era uma vez...</h1>
+<img
+src="assets/Para você… - 2.png"
+alt="Era uma vez">
 
-<p>Toque em qualquer lugar para continuar.</p>
+<button
+id="continuar">
+</button>
 
 </div>
 
 <script>
 
-document.body.onclick=function(){
+document
+.getElementById("continuar")
+.onclick=function(){
 
 window.location.href="video.html";
 
@@ -71,5 +104,4 @@ window.location.href="video.html";
 </script>
 
 </body>
-
 </html>
