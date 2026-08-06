@@ -1,144 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  >
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#f8f2e8" />
   <title>Convite da Aurora</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      background: #f8f2e8;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    /*
-      Mantém a arte no formato vertical 9:16,
-      sem esticar nem cortar a imagem.
-    */
-    .pagina {
-      position: relative;
-      width: min(100vw, 56.25vh);
-      height: min(177.7778vw, 100vh);
-      overflow: hidden;
-      background: #f8f2e8;
-    }
-
-    .arte {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    /*
-      Botão invisível posicionado sobre o selo.
-      A posição pode ser ajustada depois, caso necessário.
-    */
-    .abrir-carta {
-      position: absolute;
-      top: 38%;
-      left: 61%;
-      width: 30%;
-      height: 22%;
-
-      border: 0;
-      border-radius: 50%;
-      background: transparent;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    .abrir-carta:focus-visible {
-      outline: 3px solid rgba(188, 132, 87, 0.5);
-      outline-offset: 3px;
-    }
-
-    /*
-      Efeito discreto ao tocar no selo.
-    */
-    .pagina.saindo {
-      animation: desaparecer 0.45s ease forwards;
-    }
-
-    @keyframes desaparecer {
-      from {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      to {
-        opacity: 0;
-        transform: scale(1.015);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <main class="pagina" id="paginaCarta">
+  <main id="app" aria-label="Convite da Aurora">
 
-    <img
-      class="arte"
-      src="assets/Para você… - 1.png"
-      alt="Carta fechada do convite da Aurora"
-    >
+    <section class="screen active" id="screen-carta" data-index="0" aria-label="Carta fechada">
+      <img class="screen-media" src="assets/Para você… - 1.png" alt="Carta fechada do convite" />
+      <button class="full-tap" id="open-letter" type="button" aria-label="Abrir a carta"></button>
+    </section>
 
-    <button
-      class="abrir-carta"
-      id="abrirCarta"
-      type="button"
-      aria-label="Abrir o convite"
-    ></button>
+    <section class="screen" id="screen-erauma" data-index="1" aria-label="Era uma vez">
+      <img class="screen-media" src="assets/Para você… - 2.png" alt="Era uma vez" />
+      <button class="full-tap" id="open-video" type="button" aria-label="Continuar para o vídeo"></button>
+    </section>
+
+    <section class="screen" id="screen-video" data-index="2" aria-label="Vídeo">
+      <video id="invite-video" class="screen-media" playsinline webkit-playsinline preload="auto">
+        <source src="assets/Para você.mp4" type="video/mp4" />
+      </video>
+      <button id="play-video" class="video-start" type="button" aria-label="Tocar vídeo">
+        <span>Toque para assistir</span>
+      </button>
+    </section>
+
+    <section class="screen" id="screen-info" data-index="3" aria-label="Informações">
+      <img class="screen-media" src="assets/Para você….png" alt="Informações da festa" />
+
+      <a
+        class="hotspot hotspot-map"
+        href="https://maps.app.goo.gl/ZJfy86xhEm5KJTFS9?g_st=iw"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Abrir endereço no Google Maps"
+      ></a>
+
+      <a
+        class="hotspot hotspot-whatsapp"
+        href="https://wa.me/5591982626609?text=Ol%C3%A1%21%20Gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20na%20festa%20da%20Aurora."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Confirmar presença pelo WhatsApp"
+      ></a>
+
+      <button
+        class="hotspot hotspot-gifts"
+        id="open-gifts"
+        type="button"
+        aria-label="Abrir sugestões de presentes"
+      ></button>
+
+      <button class="edge-next" id="go-crest" type="button" aria-label="Ir para o brasão"></button>
+    </section>
+
+    <section class="screen" id="screen-brasao" data-index="4" aria-label="Brasão final">
+      <img class="screen-media" src="assets/Para você… - 5.png" alt="Brasão da Aurora" />
+    </section>
+
+    <section class="gifts-overlay" id="gifts-overlay" aria-hidden="true">
+      <img
+        class="screen-media"
+        src="assets/Beige and Red Aesthetic A Love Letter.png"
+        alt="Sugestões de presentes"
+      />
+      <button id="close-gifts" class="close-gifts" type="button" aria-label="Voltar para as informações">
+        Voltar
+      </button>
+    </section>
 
   </main>
 
-  <script>
-    const paginaCarta = document.getElementById("paginaCarta");
-    const abrirCarta = document.getElementById("abrirCarta");
-
-    let abrindo = false;
-
-    function irParaEraUmaVez() {
-      if (abrindo) return;
-
-      abrindo = true;
-      paginaCarta.classList.add("saindo");
-
-      window.setTimeout(() => {
-        window.location.href = "erauma.html";
-      }, 400);
-    }
-
-    abrirCarta.addEventListener("click", irParaEraUmaVez);
-
-    abrirCarta.addEventListener("touchend", (evento) => {
-      evento.preventDefault();
-      irParaEraUmaVez();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
