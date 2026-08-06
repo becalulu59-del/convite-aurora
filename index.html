@@ -1,16 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Convite Aurora</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+
+width:100%;
+height:100%;
+overflow:hidden;
+background:#f8f2e8;
+
+}
+
+body{
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+#carta{
+
+position:relative;
+width:100vw;
+height:100vh;
+
+}
+
+#carta img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+
+}
+
+#abrir{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:180px;
+height:180px;
+
+background:transparent;
+
+border:none;
+
+cursor:pointer;
+
+}
+
+</style>
+
 </head>
 
-<body style="margin:0;background:#fdf8f4;display:flex;justify-content:center;align-items:center;height:100vh;font-family:Georgia,serif;">
+<body>
 
-<h1 style="color:#b88655;font-size:42px;">
-Bem-vindo ao Convite da Aurora 🌸
-</h1>
+<div id="carta">
+
+<img src="assets/carta.webp">
+
+<button id="abrir"></button>
+
+</div>
+
+<script>
+
+document
+.getElementById("abrir")
+.onclick=function(){
+
+window.location.href="erauma.html";
+
+}
+
+</script>
 
 </body>
+
 </html>
