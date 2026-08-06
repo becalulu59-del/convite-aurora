@@ -1,101 +1,144 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
 
-<title>Convite Aurora</title>
+  <title>Convite da Aurora</title>
 
-<style>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #f8f2e8;
+    }
 
-html,body{
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-width:100%;
-height:100%;
-overflow:hidden;
-background:#f8f2e8;
+    /*
+      Mantém a arte no formato vertical 9:16,
+      sem esticar nem cortar a imagem.
+    */
+    .pagina {
+      position: relative;
+      width: min(100vw, 56.25vh);
+      height: min(177.7778vw, 100vh);
+      overflow: hidden;
+      background: #f8f2e8;
+    }
 
-}
+    .arte {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
 
-body{
+    /*
+      Botão invisível posicionado sobre o selo.
+      A posição pode ser ajustada depois, caso necessário.
+    */
+    .abrir-carta {
+      position: absolute;
+      top: 38%;
+      left: 61%;
+      width: 30%;
+      height: 22%;
 
-display:flex;
-justify-content:center;
-align-items:center;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
 
-}
+    .abrir-carta:focus-visible {
+      outline: 3px solid rgba(188, 132, 87, 0.5);
+      outline-offset: 3px;
+    }
 
-#carta{
+    /*
+      Efeito discreto ao tocar no selo.
+    */
+    .pagina.saindo {
+      animation: desaparecer 0.45s ease forwards;
+    }
 
-position:relative;
-width:100vw;
-height:100vh;
+    @keyframes desaparecer {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
 
-}
-
-#carta img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-
-}
-
-#abrir{
-
-position:absolute;
-
-left:50%;
-top:50%;
-
-transform:translate(-50%,-50%);
-
-width:180px;
-height:180px;
-
-background:transparent;
-
-border:none;
-
-cursor:pointer;
-
-}
-
-</style>
-
+      to {
+        opacity: 0;
+        transform: scale(1.015);
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="pagina" id="paginaCarta">
 
-<div id="carta">
+    <img
+      class="arte"
+      src="assets/Para você… - 1.png"
+      alt="Carta fechada do convite da Aurora"
+    >
 
-<img src="assets/carta.webp">
+    <button
+      class="abrir-carta"
+      id="abrirCarta"
+      type="button"
+      aria-label="Abrir o convite"
+    ></button>
 
-<button id="abrir"></button>
+  </main>
 
-</div>
+  <script>
+    const paginaCarta = document.getElementById("paginaCarta");
+    const abrirCarta = document.getElementById("abrirCarta");
 
-<script>
+    let abrindo = false;
 
-document
-.getElementById("abrir")
-.onclick=function(){
+    function irParaEraUmaVez() {
+      if (abrindo) return;
 
-window.location.href="erauma.html";
+      abrindo = true;
+      paginaCarta.classList.add("saindo");
 
-}
+      window.setTimeout(() => {
+        window.location.href = "erauma.html";
+      }, 400);
+    }
 
-</script>
+    abrirCarta.addEventListener("click", irParaEraUmaVez);
 
+    abrirCarta.addEventListener("touchend", (evento) => {
+      evento.preventDefault();
+      irParaEraUmaVez();
+    });
+  </script>
 </body>
-
 </html>
